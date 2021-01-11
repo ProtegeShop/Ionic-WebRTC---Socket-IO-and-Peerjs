@@ -1,0 +1,7 @@
+{
+  "name": "webrtctest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
