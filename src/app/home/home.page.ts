@@ -3,8 +3,6 @@ import { Socket } from 'socket.io-client';
 import { SocketService } from './../services/socket.service';
 import { WebrtcpeerService } from './../services/webrtcpeer.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { VideoCapturePlus, VideoCapturePlusOptions, MediaFile } from '@ionic-native/video-capture-plus/ngx';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +13,7 @@ export class HomePage implements OnInit {
   constructor(private webrtcpeerService: WebrtcpeerService, private socketService: SocketService) {
   }
 
+
   socketConnected: Socket;
 
   feedRoute: boolean = false;
@@ -23,7 +22,7 @@ export class HomePage implements OnInit {
   mediaStream: MediaStream;
 
   myPeer: Peer;
-  peers: any = {}; // list of connected peers
+  peers: any = {};
 
   videoTrack;
   capabilities;
