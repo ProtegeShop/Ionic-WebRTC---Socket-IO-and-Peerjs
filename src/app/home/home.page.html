@@ -1,20 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title *ngIf="socketConnected?.connected"> Connected </ion-title>
+
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!feedRoute" (click)="startStream()" fill="solid" color="primary">Start Feed</ion-button>
+      <ion-button *ngIf="feedRoute" (click)="stopStream()" fill="solid" color="danger">Stop</ion-button>
+    </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="video-grid">
+    <video></video>
   </div>
+
+  <div class="rangeContainer" *ngIf="watchAt">
+    <ion-range [min]="min" [max]="max" [step]="step" [value]="value" snaps color="primary" (ionChange)="onZoom($event)"></ion-range>
+  </div>
+
 </ion-content>
+
+<div class="floatingLink" *ngIf="watchAt">
+  <div>Share stream url</div>
+  <a [href]="watchAt" target="_blank">{{watchAt}}</a>
+</div>
